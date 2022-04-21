@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CMakeSharedSettings">
     <configurations>
+      <configuration PROFILE_NAME="RelWithDebInfo" ENABLED="true" GENERATION_DIR="cmake-build-relwithdebinfo" CONFIG_NAME="RelWithDebInfo" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja" />
       <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="cmake-build-debug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja" />
       <configuration PROFILE_NAME="Release" ENABLED="true" GENERATION_DIR="cmake-build-release" CONFIG_NAME="Release" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja" />
     </configurations>
