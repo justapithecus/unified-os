@@ -1,0 +1,52 @@
+FROM ubuntu:focal
+
+ARG GCC_VERSION=11.2.0
+ARG BINUTILS_VERSION=2.38
+ENV DEBIAN_FRONTEND="noninteractive"
+
+# Switch to root user for installing updates and dependencies
+USER root
+
+# Install build dependencies
+RUN apt-get update \
+  && apt-get install -y \
+    build-essential \
+    bison \
+    flex \
+    libgmp3-dev \
+    libmpc-dev \
+    libmpfr-dev \
+    texinfo \
+    wget \
+  && apt-get clean
+
+# Download and build GCC cross-compiler from source
+WORKDIR /tmp/src
+
+RUN wget -qO - https://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.gz | tar -xz
+RUN wget -qO - https://ftp.gnu.org/gnu/binutils/binutils-${BINUTILS_VERSION}.tar.gz | tar -xz
+
+ENV PREFIX=/tmp/opt
+ENV TARGET=i686-elf
+ENV PATH="${PREFIX}/bin:${PATH}"
+
+RUN mkdir -p ${PREFIX}
+
+# --disable-nls excludes native language support with reduces compile time
+# --with-sys-root enables sysroot support in the cross-compile by pointing to a default empty directory
+RUN mkdir /tmp/src/build-binutils
+WORKDIR /tmp/src/build-binutils
+RUN ../binutils-${BINUTILS_VERSION}/configure --target="${TARGET}" --prefix="${PREFIX}" --with-sys-root --disable-nls --disable-werror
+RUN make
+RUN make install
+
+# --without-headers removes C standard library and runtime as a dependency
+RUN mkdir /tmp/src/build-gcc
+WORKDIR /tmp/src/build-gcc
+RUN ../gcc-${GCC_VERSION}/configure --target="${TARGET}" --prefix="${PREFIX}" --disable-nls --enable-languages=c,c++ --without-headers
+RUN make all-gcc
+RUN make all-target-libgcc
+RUN make install-gcc
+RUN make install-target-libgcc
+
+WORKDIR /tmp/opt
