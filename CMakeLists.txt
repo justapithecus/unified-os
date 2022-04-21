@@ -4,5 +4,3 @@ project(uos
         DESCRIPTION "Unified Operating System"
         HOMEPAGE_URL "https://github.com/rihtwis-weard/unified-os"
         LANGUAGES CXX C ASM)
-
-set(CMAKE_TOOLCHAIN_FILE i686-elf.cmake)
