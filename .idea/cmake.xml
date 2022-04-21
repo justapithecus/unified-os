@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSharedSettings">
+    <configurations>
+      <configuration PROFILE_NAME="RelWithDebInfo" ENABLED="true" GENERATION_DIR="cmake-build-relwithdebinfo" CONFIG_NAME="RelWithDebInfo" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja -DCMAKE_TOOLCHAIN_FILE=i686-elf.cmake" />
+      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="cmake-build-debug" CONFIG_NAME="Debug" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja -DCMAKE_TOOLCHAIN_FILE=i686-elf.cmake" />
+      <configuration PROFILE_NAME="Release" ENABLED="true" GENERATION_DIR="cmake-build-release" CONFIG_NAME="Release" TOOLCHAIN_NAME="Remote Cross Compiler" GENERATION_OPTIONS="-G Ninja -DCMAKE_TOOLCHAIN_FILE=i686-elf.cmake" />
+    </configurations>
+  </component>
+</project>

@@ -35,9 +35,6 @@ RUN useradd -m clion \
 
 RUN usermod -aG sudo -s /bin/bash clion
 
-# Source pyenv shims for all users
-RUN echo 'export PATH="/opt/pyenv/shims:${PATH}"' > /etc/environment
-
 # Pre-install project dependencies
 USER clion
 
